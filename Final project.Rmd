@@ -1,0 +1,83 @@
+---
+title: "Analysis of 2019 Canadian Federal Election"
+author: "Jiaqi Liu"
+date: "December 12, 2020"
+output:
+  pdf_document: default
+  bookdown::pdf_document2: default
+  html_document:
+    df_print: paged
+bibliography: references.bib
+nocite: '@*'
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(tidyverse)
+library(knitr)
+```
+
+# Abstract
+In this analysis, 2019 Canadian Federal Election is repredicted by variables such as age, sex and education. To study the difference of the result, logistic regression model and post stratification are built.
+
+Keywords: post stratification, logistic regression model, predictors
+
+\newpage
+
+# Introduction
+In the 2019 Canadian Federal Election, Prime minister Justin Trudeau, the leader of the Liberal Party, won the election by 157 common seats with 99.7% of votes counted. ("Results of the 2019 Canadian federal election," 2019) According to the voting regulation, only Canadian citizens over 18 years old or older in the electoral district and registered on the Voters List were able to vote in a Canadian federal election. ("guide to voting in the Canadian federal election," 2019) Since a lot of people were restricted to vote, the result would have been different if ‘everyone’ had voted.
+
+Age is a significant variable since young people, comparing with middle age and old age, are more likely to choose not to vote.("Reasons for not voting in the federal election, October 21, 2019," 2020) Moreover, there are other factors such as sex, family income status and education level that can be important predictors for the vote. 
+
+In this report, the 2019 Canadian Election Study (CES) and the 2017 General Social Survey (GSS) will be used to build a MRP model to study the result of the 2019 Canadian Federal Election if all people voted in the election. 
+\newpage
+
+# Data
+
+```{r}
+#install.packages("devtools")
+#devtools::install_github("hodgettsp/cesR")
+suppressWarnings(suppressMessages(library("cesR")))
+library(tidyverse)
+library(cesR)
+library(labelled)
+
+```
+
+
+```{r}
+# import the survey data
+library(tidyverse)
+survey_data <- read_csv("~/Desktop/FA/survey_data.csv")
+census_data <- read_csv("~/Desktop/FA/census_data.csv")
+
+```
+
+
+```{r}
+#model <- glm(n ~ age + sex, 
+            #data=census_data, family="binomial")
+
+
+#summary(model)
+```
+```
+
+# References
+
+[1]Results of the 2019 Canadian federal election. (2019, October 26). Wikipedia, the free encyclopedia. Retrieved December 9, 2020, from https://en.wikipedia.org/wiki/Results_of_the_2019_Canadian_federal_election#Summary_analysis
+
+[2]A guide to voting in the Canadian federal election. (2019, September 20). Information Newcomers Can Trust | Settlement.Org. https://settlement.org/ontario/immigration-citizenship/canadian-government/voting/a-guide-to-voting-in-the-canadian-federal-election/#who
+
+[3]Reasons for not voting in the federal election, October 21, 2019. (2020, February 26). https://www150.statcan.gc.ca/n1/daily-quotidien/200226/dq200226b-eng.htm
+
+[4]Stephenson, Laura B; Harell, Allison; Rubenson, Daniel; Loewen, Peter John, 2020, “2019 Canadian Election Study - Phone Survey”, https://doi.org/10.7910/DVN/8RHLG1, Harvard Dataverse, V1, UNF:6:eyR28qaoYlHj9qwPWZmmVQ==
+fileUNF
+
+[5]R. Alexander, S. Caetano (2020). .’01-data_cleaning-post-strat.R’.[R script]
+https://q.utoronto.ca/courses/184060/files/9827182?module_item_id=1913033
+
+
+
